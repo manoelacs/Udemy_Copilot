@@ -1,0 +1,57 @@
+# HTTP Requests
+
+################################
+# Get all employees
+################################
+GET http://localhost:5000/employees
+Accept: application/json
+
+################################
+# Get an employee by id
+################################
+GET http://localhost:5000/employees/get/1
+
+
+################################
+# Create a new employee
+################################
+ POST http://localhost:5000/employees/add
+Content-Type: application/json
+
+{
+    "firstName": "John",
+    "lastName": "Doe",
+    "hireDate": "2021-01-01",
+    "position": "Manager"
+}
+
+################################
+# Update an employee
+################################
+
+PUT http://localhost:5000/employees/update/3
+Content-Type: application/json
+
+{
+    "firstName": "John",
+    "lastName": "Doe",
+    "hireDate": "2021-01-01",
+    "position": "Manager"
+}
+
+################################
+# Delete an employee
+################################
+DELETE http://localhost:5000/employees/delete/1
+
+
+################################
+# Get employees by position
+################################
+GET http://localhost:5000/employees/position/Manager
+
+
+### Run the requests
+- Open the `requests.http` file 
+- Click on the `Send Request` link above each request to run the request        
+
