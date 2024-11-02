@@ -23,12 +23,12 @@ import { EmployeesRoutes } from './routes/employeesRoute';
 export class Server {
   private app = express();
   private host = process.env.HOST || 'localhost';
-  private port = Number(process.env.PORT) || 5000;
+  private port = Number(process.env.SERVER_PORT) || 5000;
 
   constructor() {
-    this.configureMiddleware();
-    this.loadRoutes();
-    this.startServer();
+    this.configureMiddleware(); // Calling private method within the class
+    this.loadRoutes(); // Calling private method within the class
+    this.startServer(); // Calling private method within the class
   }
 
   private configureMiddleware() {
@@ -44,7 +44,7 @@ export class Server {
       })
     );
     this.app.use(express.json());
-    this.app.use(this.errorHandler);
+    this.app.use(this.errorHandler.bind(this));
   }
 
   private loadRoutes() {
@@ -66,5 +66,5 @@ export class Server {
     console.error(err.stack);
     res.status(500).send({ error: 'Something went wrong!' });
   }
-  // Create and start the server
 }
+const server = new Server();
