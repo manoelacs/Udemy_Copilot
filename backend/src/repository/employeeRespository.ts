@@ -118,4 +118,31 @@ export class EmployeeRepository {
     );
     return employees;
   }
+
+  /**
+   * Retrieves an employee's bio by their ID.
+   * @param {string} id - The ID of the employee.
+   * @returns {Promise<string | undefined>} - A promise that resolves to the employee's bio or undefined if not found.
+   */
+  public async getEmployeeBioById(id: string): Promise<string | undefined> {
+    const employees = await this.queryDatabase<Employee[]>(
+      'SELECT bio FROM employees WHERE id = ?',
+      [id]
+    );
+    return employees.length ? employees[0].bio : undefined;
+  }
+
+  /**
+   * Updates the bio of an employee in the database.
+   * @param {string} id - The ID of the employee.
+   * @param {string} bio - The new bio of the employee.
+   * @returns {Promise<number>} - A promise that resolves to the number of affected rows.
+   */
+  public async updateEmployeeBio(id: string, bio: string): Promise<number> {
+    const result = await this.queryDatabase<{ affectedRows: number }>(
+      'UPDATE employees SET bio = ? WHERE id = ?',
+      [bio, id]
+    );
+    return result.affectedRows;
+  }
 }
