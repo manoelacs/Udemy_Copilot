@@ -4,10 +4,11 @@
   "description": "A client SDK for interacting with the employee management backend.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest",
     "start": "node dist/server.js",
     "dev": "nodemon src/server.ts",
-    "build": "tsc"
+    "build": "tsc",
+    "test:watch": "jest --watch"
   },
   "keywords": [
     "sdk",
